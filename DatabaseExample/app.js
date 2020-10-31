@@ -16,15 +16,15 @@ var MongoClient = require('mongodb').MongoClient;
 var database;
 
 function connectDB() {
-    var databaseUrl = 'mongodb://localhost:27017/local';
+    var databaseUrl = 'mongodb://localhost:27017';
     
-    MongoClient.connect(databaseUrl, function(err, db){
+    MongoClient.connect(databaseUrl, {useNewUrlParser: true}, function(err, client){
         if(err) {
             console.log('데이터베이스 연결 시 에러발생함.');
             return;
         }
         console.log('데이터베이스에 연결됨 : ' + databaseUrl);
-        database = db;
+        database = client.db("local");
     });
 }
 
@@ -45,10 +45,31 @@ app.use(expressSession({
 }));
 
 
-
-
-
 var router = express.Router();
+
+
+app.use('/', router);
+
+var authUser = function(db, id, password, callback) {
+    console.log('authUser 호출됨 : ' + id + ', ' + password);
+    
+    var users = db.collection('users');
+    
+    users.find({"id" : id, "password" : password}).toArray(function(err, docs) {
+        if(err) {
+            callback(err, null);
+            return;
+        }
+        if(docs.length > 0) {
+            console.log('일치하는 사용자를 찾음.');
+            callback(null, docs);
+        } else {
+            console.log('일치하는 사용자를 찾지 못함');
+            callback(null, null);
+        }
+    });
+};
+
 
 router.route('/process/login').post(function(req, res) {
     console.log('/process/login 라우팅 함수 호출됨.');
@@ -89,8 +110,6 @@ router.route('/process/login').post(function(req, res) {
     }
 });
 
-app.use('/',router);
-
 
 var authUser = function(db, id, password, callback) {
     console.log('authUser 호출됨 : ' + id + ', ' + password);
@@ -112,8 +131,6 @@ var authUser = function(db, id, password, callback) {
         }
     });
 };
-
-
 
 
 var errorHandler = expressErrorHandler({
