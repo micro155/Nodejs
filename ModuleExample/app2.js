@@ -9,8 +9,6 @@ var expressSession = require('express-session');
 
 var expressErrorHandler = require('express-error-handler');
 
-var mongoose = require('mongoose');
-
 var crypto = require('crypto');
 
 var user = require('./routes/user');
@@ -18,10 +16,7 @@ var user = require('./routes/user');
 var config = require('./config');
 
 var database_loader = require('./database/database_loader');
-
-var database;
-var UserSchema;
-var UserModel;
+var route_loader = require('./routes/route_loader');
 
 var app = express();
 
@@ -41,19 +36,7 @@ app.use(expressSession({
 }));
 
 
-var router = express.Router();
-
-
-//app.use('/', router);
-
-
-router.route('/process/login').post(user.login);
-
-router.route('/process/adduser').post(user.adduser);
-
-router.route('/process/listuser').post(user.listuser);
-
-app.use('/', router);
+route_loader.init(app, express.Router());
 
 
 var errorHandler = expressErrorHandler({
