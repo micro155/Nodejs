@@ -46,7 +46,7 @@ function connectDB() {
     
     database.on('open', function() {
         console.log('데이터베이스에 연결됨 : ' + databaseUrl);    
-        
+            
         createUserSchema(database);
     });
     
@@ -65,6 +65,8 @@ function createUserSchema(database) {
     
     /*var user_schema = require('./database/user_schema');
     var UserSchema = user_schema.createSchema(); */
+    
+    database.UserSchema = require('./database/user_schema').createSchema(mongoose);
     
     database.UserModel = mongoose.model('users3', database.UserSchema);
     console.log('UserModel 정의함.');

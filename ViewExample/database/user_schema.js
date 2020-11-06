@@ -58,6 +58,9 @@ Schema.createSchema = function(mongoose) {
         return this.find({}, callback);
     });
     
+    UserModel=mongoose.model('user3',UserSchema);
+    console.log('UserModel 정의함');
+    
     return UserSchema;
 }
 

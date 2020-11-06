@@ -168,7 +168,7 @@ var authUser = function(id, password, callback) {
                     return;
                 }
             if(rows.length > 0) {
-                console.log('사용자 찾지 못함.');
+                console.log('사용자 찾음.');
                 callback(null, rows);
             } else {
                 console.log('사용자 찾지 못함.');

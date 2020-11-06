@@ -5,6 +5,7 @@
     "express": "^4.17.1",
     "express-error-handler": "^1.1.0",
     "express-session": "^1.17.1",
-    "mongoose": "^5.10.12"
+    "mongoose": "^5.10.12",
+    "pug": "^3.0.0"
   }
 }

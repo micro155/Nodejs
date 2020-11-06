@@ -48,7 +48,7 @@ Schema.createSchema = function(mongoose) {
             console.log('authenticate 호출됨.');
             return this.encryptPassword(plainText) === hashed_password;
         }
-    })
+    });
 
     UserSchema.static('findById', function(id, callback) {
         return this.find({id:id}, callback);
@@ -57,6 +57,9 @@ Schema.createSchema = function(mongoose) {
     UserSchema.static('findAll', function(callback) {
         return this.find({}, callback);
     });
+    
+    UserModel=mongoose.model('user3',UserSchema);
+    console.log('UserModel 정의함');
     
     return UserSchema;
 }
