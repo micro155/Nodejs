@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {font-family: Arial;}
+
+.cover {
+
+  text-align: center;
+  float:center;
+  
+  border: 1px solid black;
+  <!-- background-color: #f1f1f1; -->
+}
+
+</style>
+<script type="text/javascript" src="js/maker_notice_manager.js"></script>
+
+<script type="text/javascript">
+var monthtext=['1','2','3','4','5','6','7','8','9','10','11','12'];
+
+function Datedropdown(dayfield, monthfield, yearfield){
+
+var today = new Date();
+var dayfield = document.getElementById(dayfield);
+var monthfield = document.getElementById(monthfield);
+var yearfield = document.getElementById(yearfield);
+
+    for (var i=1; i<32; i++) {
+
+        dayfield.options[i]=new Option(i, i);
+        dayfield.options[today.getDate()]=new Option(today.getDate(), today.getDate(), true, true); //select today's day
+    }
+    
+    for (var m=0; m<12; m++) {
+
+        monthfield.options[m]=new Option(monthtext[m], monthtext[m]);
+        monthfield.options[today.getMonth()]=new Option(monthtext[today.getMonth()], monthtext[today.getMonth()], true, true); //select today's month
+    }
+    
+    var thisyear=today.getFullYear();
+    for (var y=0; y<20; y++){
+        yearfield.options[y]=new Option(thisyear, thisyear);
+        thisyear+=1;
+        yearfield.options[0]=new Option(today.getFullYear(), today.getFullYear(), true, true); //select today's year
+    }
+}
+</script>
+
+<script>
+
+    function send() {
+            alert('공고가 등록되었습니다.');
+            setTimeout(function() {
+             window.open("about:blank", "_self").close();
+            }, 500);
+    }
+</script>
+</head>
+<body>
+
+<h3 style="text-align:center;">업체 공고 작성 페이지</h3>
+
+<form method="post" style="text-align:center;" class="cover" id="makerNotice" action="/process/MakerNotice" onsubmit="send();">
+	
+		<label for="title"><h4><b>제목</b></h4></label>
+		<input type="text" name="title" id="title" placeholder="공고명 작성" style="width: 350px;" required>
+        <h4><b>시작일</b></h4>
+        <select id="startYear" name="startYear"></select>
+        <select id="startMonth" name="startMonth"></select>
+        <select id="startDay" name="startDay"></select>
+        <h4><b>마감일</b></h4>
+        <select id="endYear" name="endYear"></select>
+        <select id="endMonth" name="endMonth"></select>
+        <select id="endDay" name="endDay"></select>
+        <br />
+        <h4><b>도시락 개수 : </b><input type="text" name="num" id="num" placeholder="개수" style="width: 50px; text-align: center;" required></h4>
+        
+		<p><label for="content"><h4><b>내용</b></h4></label></p>
+		<textarea name="context" placeholder="공고내용 작성" form="makerNotice" style="width: 400px; height: 400px;" required></textarea>
+		<p></p>
+		<input type="submit" class="btn btn-primary" value="공고 등록" >
+
+</form>
+
+<script type="text/javascript">
+window.onload=function(){
+
+Datedropdown("startDay", "startMonth", "startYear"),
+Datedropdown("endDay", "endMonth", "endYear")
+
+}
+</script>
+	
+</body>
+</html> 

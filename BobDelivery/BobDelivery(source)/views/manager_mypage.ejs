@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+    
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  color: white;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+}
+    
+.topnav button {
+	width:100%;
+	cursor: pointer;
+	color: white;
+	padding: 14px 16px;
+	
+	font-size: 17px;
+	display: block;
+	background-color:#333;
+	border-width: 0px;
+}  
+
+.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.topnav button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color:#f6603c;
+  color: white;
+  font-size: 15px;
+}
+    
+.submit {
+border: 0;
+  text-align:center;
+  width:auto;
+  background: #f6603c;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:15px;
+}
+
+
+
+<!-- yunny add -->
+
+/* Style the tab */
+h4{
+border:2px solid black;
+width:10%;
+text-align:center;
+}
+
+.maker_info{
+border:2px solid black;
+width:100%;
+text-align:center;
+}
+
+    
+</style>
+</head>
+<body>
+    
+    <script>
+        function Apply_student_notice() {
+         window.open("../public/manager_notice_student.html","학생 공고 작성","width=1500, height=1500");
+        }
+        
+        function Apply_maker_notice() {
+         window.open("../public/manager_notice_maker.html","업체 공고 작성","width=1500, height=1500");
+        }
+        
+        function menu_click(str) {
+            if(str == "main") {
+                frm.action = "/process/Manager_Main";
+            } else if(str == "allocation") {
+                frm.action = "/process/Manager_Allocation";
+            } else if(str == "certValid") {
+                frm.action = "/process/Manager_CertValidFirst";
+            } else if(str == "contractMaker") {
+                frm.action = "/process/Manager_MakerContract";
+            } else if(str == "childManage") {
+                frm.action = "/process/Manager_ChildManage";
+            } else if(str == "childArrangement") {
+                frm.action = "/process/Manager_ChildArrangementFirstPage";
+            } else if(str == "makerlist") {
+                frm.action = "/process/Manager_MakerList";
+            } else if(str == "studentlist") {
+                frm.action = "/process/Manager_StudentList";
+            } else if(str == "mypage") {
+                frm.action = "/process/Manager_mypage";
+            } else if(str == "logout") {
+                frm.action = "/process/logout";
+            }
+        }
+        
+        function MyPageChange() {
+            var frm2 = document.frm2;
+            frm2.action = "/process/Manager_mypage_change";
+            frm2.submit();
+            alert('수정이 완료되었습니다.');
+        }
+        
+        
+        function GoToMain() {
+            var frm2 = document.frm2;
+            frm2.action = "/process/Manager_Main";
+            frm2.submit();
+        }
+        
+    </script>
+
+<!-- Simulate a smartphone / tablet -->
+    
+<div class="form">
+
+<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a class="active">밥딜리버리</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+  </a>
+  <div id="myLinks" class="multi-button">
+      <form method="post" name="frm" id="frm" style="color: white;">
+            <input type="text" value="<%=ManagerID %>" name="id" style="font-weight: bold; width: 80px; color: #fff; background: #333; border-width: 0px; text-align: center;" readonly >님 환영합니다.
+            <p></p>
+          <button type="submit" onClick='menu_click("main");' >메인 페이지</button>
+          <button type="button" onClick="Apply_maker_notice();" >업체 공고</button>
+          <button type="button" onClick="Apply_student_notice();" >배달원 공고</button>
+          <button type="submit" onClick='menu_click("allocation");' >배달원 배정</button>
+          <button type="submit" onClick='menu_click("certValid");' >배달 인증 확인</button>
+          <button type="submit" onClick='menu_click("contractMaker");' >업체 계약 관리</button>
+          <button type="submit" onClick='menu_click("childManage");' >결식 아동 관리</button>
+          <button type="submit" onClick='menu_click("childArrangement");' >결식 아동 급식일 배정</button>
+          <button type="submit" onClick='menu_click("makerlist");' >업체 목록</button>
+          <button type="submit" onClick='menu_click("studentlist");' >배달원 목록</button>
+          <button type="submit" onClick='menu_click("mypage");' >마이페이지</button>
+          <button type="submit" onClick='menu_click("logout");' >로그아웃</button>
+      </form>
+  </div>
+</div>
+
+
+<!-- yunny add -->
+
+
+<div>	
+	<h2 align="center">마이 페이지</h2>
+	
+	<div class="maker_info">
+        <form method="post" id="frm2" name="frm2">
+        <br />
+		<p>ID: <input type="text" value="<%=data[0].id %>" name="id" style="text-align: center; width: 120px; color: black;" readonly></p>
+		password: <input type="password" value="<%=data[0].password %>" name="password" style="text-align: center; color: black;" required/>
+        <br />
+		<br />
+		<p>지자체명: <%=data[0].Gname %></p>
+		담당자 이름 : <input type="text" value="<%=data[0].Mname %>" name="name" style="text-align: center; width: 80px; color: black;" required/>
+        <br />
+		<br />
+        담당자 연락처 : <input type="text" value="<%=data[0].phone %>" name="phone" style="text-align: center; color: black; width: 120px;" required/>
+		<br />
+		<br />
+		<input type="button" name="mypagechange" class="submit" value="수정하기" onClick="MyPageChange();">
+		<input type="button" name="gotomain" class="submit" value="메인 화면으로" onClick="GoToMain();">
+		</form>
+        <br />
+	</div>	
+</div>
+</div>
+
+
+
+<!-- yunny add -->
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>

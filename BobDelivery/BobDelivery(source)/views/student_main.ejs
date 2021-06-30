@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:white;
+}
+
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 4px;
+  
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  <!-- text-decoration: none; -->
+  font-size: 15px;
+  display: block;
+}
+
+.topnav button {
+	width:100%;
+	cursor: pointer;
+	color: white;
+	padding: 14px 16px;
+	
+	font-size: 17px;
+	display: block;
+	background-color:#333;
+	border-width: 0px;
+}
+
+#myLinks{
+
+}
+
+.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  
+}
+
+.topnav button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  
+  background-color:#1ab188;
+  color: white;
+}
+
+    
+
+<!-- yunny add -->
+
+h4{
+text-align:center;
+color:#fff;
+
+}
+
+h5{
+text-align:center;
+color:white;
+}
+
+
+.student_apply_notification{
+border:2px solid black;
+width:100%;
+text-align:center;
+}
+
+.student_apply_list{
+border:2px solid black;
+width:100%;
+text-align:center;
+}
+
+<!-- yunny add -->
+
+input[type=submit] {
+  border:0;
+  text-align:center;
+  width:30%;
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:15px;
+}
+
+input[type=button] {
+  border:0;
+  text-align:center;
+  width:auto;
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:15px;
+}
+
+.apply-submit{
+border:0;
+  text-align:center;
+  width:auto;
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:15px;
+}
+
+</style>
+
+</head>
+<body>
+    
+    <script>
+        function menu_click(str) {
+            if(str == "main") {
+                frm.action = "/process/Student_Main";
+            } else if(str == "FindDelivery") {
+                frm.action = "/process/Student_FirstPageDelivery";
+            } else if(str == "CertPage") {
+                frm.action = "/process/Student_CertPage";
+            } else if(str == "mypage") {
+                frm.action = "/process/Student_mypage";
+            } else if(str == "logout") {
+                frm.action = "/process/logout";
+                alert('정상적으로 로그아웃 되었습니다.');
+            }
+        }
+        
+        function open_apply_change_page() {
+         window.open("","배달원 공고 신청 수정","width=1500, height=1500");
+         var frm2 = document.frm2;
+         frm2.action = "/process/Student_ApplyValid";
+         frm2.target = "배달원 공고 신청 수정"
+         frm2.submit();
+        }
+        
+        
+        function open_apply_page() {
+         window.open("","배달원 공고 신청","width=1500, height=1500");
+         var frm2 = document.frm2;
+         frm2.action = "/process/Student_ApplyPage";
+         frm2.target = "배달원 공고 신청"
+         frm2.submit();
+        }
+        
+        function Search_application() {
+         window.open("","배달원 공고 신청 내역","width=1500, height=1500");
+         var frm3 = document.frm3;
+         frm3.action = "/process/Student_ApplyList";
+         frm3.target = "배달원 공고 신청 내역"
+         frm3.submit();
+        }
+        
+        function Search_PastDeliveryList() {
+         window.open("","지난 배달 봉사 완료 내역","width=1500, height=1500");
+         var frm4 = document.frm4;
+         frm4.action = "/process/Student_CompleteSearch";
+         frm4.target = "지난 배달 봉사 완료 내역"
+         frm4.submit();
+        }
+        
+    </script>
+
+
+<!-- Top Navigation Menu -->
+<div class="form">
+
+	<div class="topnav">
+		<a class="active">밥딜리버리</a><a href="javascript:void(0);" class="icon" onclick="myFunction()">
+			<i class="fa fa-bars"></i>
+		</a>
+	  
+		<div id="myLinks" class="multi-button">
+			<form method="post" style="color:white;" name="frm" id="frm">
+          <input type="text" value="<%=StudentID %>" name="id" style="font-weight: bold; width: 80px; text-align: center; color: #fff; background: #333; border-width: 0px; " readonly> 님 환영합니다
+			<p></p>
+				  <button type="submit" onclick='menu_click("main");' >메인 페이지</button>
+				  <button type="submit" onclick='menu_click("FindDelivery");' >배달지 확인</button>
+				  <button type="submit" onclick='menu_click("CertPage");' >배달 인증</button>
+				  <button type="submit" onclick='menu_click("mypage");' >마이페이지</button>
+				  <button type="submit" onclick='menu_click("logout");' >로그아웃</button>
+			</form>
+		</div>
+	</div>
+
+
+    <h3>메인페이지</h3>
+
+	<br />
+	
+		<h4>봉사 모집 공고</h4>
+		<div class="student_apply_notification">			
+			<h5><b>접수중</b></h5>
+				<% if (data) { %>
+				<% if (data[1]) { %>
+			<form method="post" id="frm2" name="frm2">
+			<input type="text" value="<%=data[0].title %>" name="title"  style="background:#2a3943; width:300px; text-align:center; border-width:0px; color:white;" />
+			<h5>신청 기간 : <%=data[0].start %> ~ <%=data[0].end %></h5>
+			<input type="submit" class="apply-submit" name="apply_student" value="수정" onClick="open_apply_change_page();"/>
+			</form>
+			<br />
+			<% } else { %>
+			<form method="post" id="frm2" name="frm2">
+			<p><input type="text"  value="<%=data[0].title %>" name="title" style="background:#2a3943; width:300px; text-align:center; border-width:0px; color:white;"></p>
+			<h5>신청 기간 : <%=data[0].start %> ~ <%=data[0].end %></h5>
+			<input type="submit" class="apply-submit" name="apply_student" value="신청" onClick="open_apply_page();"/>
+			</form>
+			<br />
+			<% } %>
+			<% } else { %>
+			<h5 align="center">접수 중인 공고가 없습니다.</h5>
+			<% } %>
+		</div>	
+		<br />
+		<h4> 봉사 신청 내역 </h4>
+		<div class="student_apply_list">
+				<br />
+				<form method="post" id="frm3" name="frm3">
+					<input type="button" value="조회하기" onClick="Search_application();" >
+				</form>
+				<br />
+		</div>
+		<br />
+		<h4> 지난 봉사 내역 </h4>
+		   <div class="student_apply_list">
+				<br />
+				<form method="post" id="frm4" name="frm4">
+					<input type="button" value="조회하기" onClick="Search_PastDeliveryList();">
+				</form>
+				<br />
+		   </div>
+		<br />
+
+</div>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: #fff;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width:33.3%;
+}
+
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #1ab18899;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #1ab188db;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  border:0;
+  text-align:center;
+  width:30%;
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:20px;
+}
+
+input[type=button] {
+  border:0;
+  text-align:center;
+  width:30%;  
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:20px;
+  
+}
+
+
+h3 {
+  text-align: center;
+  color: #ffffff;
+  margin: 0 0 20px;
+}
+
+h4 {
+  text-align: left;
+  color: #ffffff;
+  margin: 0 0 5px;
+}
+
+</style>
+<script type="text/javascript" src="js/login.js"></script>
+
+</head>
+<body>
+<div class="form">
+<!-- <h2>Tabs</h2> -->
+	<h1 style="color: #ffffff;">로그인</h1>
+
+	<div class="tab">
+		<button class="tablinks" id="student-tab" onclick="SelectJob(event, 'student')">학생</button>
+		<button class="tablinks" id="maker-tab" onclick="SelectJob(event, 'maker')">업체</button>
+		<button class="tablinks" id="manager-tab" onclick="SelectJob(event, 'manager')">지자체</button>
+	</div>	
+	<p></p>
+	<!-- 학생 로그인 -->
+	<div class="student-tab">
+        <form id="student" action="/process/Student_login" method="post">
+        <h4>아이디</h4>
+		<input type="text" name="id" id="student_id" class="" />
+		<h4>비밀번호</h4>
+		<input type="password" name="password" id="student_pw" class="" />
+		<br>
+        <br>
+		<div style="text-align:center;">
+		<input type="submit" name="" id="student_login" class="btn btn-primary" value="로그인" />
+		<input type="button" value="회원가입" class="btn btn-primary" onClick="location.href='./public/register.html'"/>
+		</div>
+        </form>
+	</div>
+	<!-- 업체 로그인 -->
+	<div class="maker-tab" style="display:none">
+        <form id="maker" action="/process/Maker_login" method="post">
+        <h4>아이디</h4>
+		<input type="text" name="id" id="maker_id" class="" />
+		<h4>비밀번호</h4>
+		<input type="password" name="password" id="maker_pw" class="" />
+		<br>
+        <br>
+		<div style="text-align:center;">
+		<input type="submit" name="" id="maker_login" class="btn btn-primary" value="로그인" />
+		<input type="button" value="회원가입" class="btn btn-primary" onClick="location.href='./public/register.html'">
+		</div>
+        </form>
+	</div>
+	<!-- 지자체 로그인 -->
+	<div class="manager-tab" style="display:none">
+        <form id="government" action="/process/Manager_login" method="post">
+        <h4>아이디</h4>
+		<input type="text" name="id" id="manager_id" class="" />
+		<h4>비밀번호</h4>
+		<input type="password" name="password" id="manager_pw" class="" />
+		<br>
+        <br>
+		<div style="text-align:center;">
+        <input type="submit" name="" id="government_login" class="btn btn-primary" value="로그인" />
+		<input type="button" value="회원가입" class="btn btn-primary" onClick="location.href='./public/register.html'">
+		</div>
+        </form>
+	</div>
+
+</div>
+
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("student-tab").className += " active";
+console.log("학생 active");
+</script>
+</body>
+</html> 

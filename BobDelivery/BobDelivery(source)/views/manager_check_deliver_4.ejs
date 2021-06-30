@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+    
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  color: white;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+}
+    
+.topnav button {
+	width:100%;
+	cursor: pointer;
+	color: white;
+	padding: 14px 16px;
+	
+	font-size: 17px;
+	display: block;
+	background-color:#333;
+	border-width: 0px;
+}  
+
+.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.topnav button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color:#f6603c;
+  color: white;
+  font-size: 15px;
+}
+    
+.submit {
+border: 0;
+  text-align:center;
+  width:auto;
+  background: #f6603c;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:15px;
+}
+
+
+<!-- yunny add -->
+
+/* Style the tab */
+h4{
+border:2px solid black;
+width:10%;
+text-align:center;
+}
+
+.maker_apply2{
+border:2px solid black;
+width:30%;
+text-align:center;
+
+}
+
+
+.tg  {text-align: center; border-collapse:collapse;border-color:#aaa;border-spacing:0;}
+.tg td{text-align: center; background-color:#fff; border-color:#aaa; border-style:solid; border-width:1px; color:#333;
+  font-family:Arial, sans-serif;font-size:14px; overflow:hidden; padding:10px 5px;word-break:normal;}
+.tg th{text-align: center; background-color:#4CAF50;border-color:#aaa;border-style:solid;border-width:1px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+
+.cover {
+  text-align: center;
+  border: 1px solid black;
+  width: 50%;
+  float:center;
+}
+
+    
+<!-- yunny add -->
+
+
+</style>
+</head>
+<body>
+
+    <script>
+        function Apply_student_notice() {
+         window.open("../public/manager_notice_student.html","학생 공고 작성","width=1500, height=1500");
+        }
+        
+        function Apply_maker_notice() {
+         window.open("../public/manager_notice_maker.html","업체 공고 작성","width=1500, height=1500");
+        }
+        
+        function menu_click(str) {
+            if(str == "main") {
+                frm.action = "/process/Manager_Main";
+            } else if(str == "allocation") {
+                frm.action = "/process/Manager_Allocation";
+            } else if(str == "certValid") {
+                frm.action = "/process/Manager_CertValidFirst";
+            } else if(str == "contractMaker") {
+                frm.action = "/process/Manager_MakerContract";
+            } else if(str == "childManage") {
+                frm.action = "/process/Manager_ChildManage";
+            } else if(str == "childArrangement") {
+                frm.action = "/process/Manager_ChildArrangementFirstPage";
+            } else if(str == "makerlist") {
+                frm.action = "/process/Manager_MakerList";
+            } else if(str == "studentlist") {
+                frm.action = "/process/Manager_StudentList";
+            } else if(str == "mypage") {
+                frm.action = "/process/Manager_mypage";
+            } else if(str == "logout") {
+                frm.action = "/process/logout";
+            }
+        }
+        
+        function Complete() {
+            alert('배달 상태가 변경되었습니다.');
+            var frm2 = document.frm2;
+            frm2.action = "/process/ChangeDeliveryState";
+            frm2.submit();
+        }
+        
+        function Valid_location() {
+            var frm2 = document.frm2;
+            frm2.action = "/process/Child_location";
+            frm2.submit();
+        }
+        
+    </script>
+    
+<!-- Simulate a smartphone / tablet -->
+
+<div class="form">
+    
+	<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a class="active">밥딜리버리</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+  </a>
+  <div id="myLinks" class="multi-button">
+      <form method="post" name="frm" id="frm" style="color: white;">
+            <input type="text" value="<%=ManagerID %>" name="id" style="font-weight: bold; width: 80px; color: #fff; background: #333; border-width: 0px; text-align: center;" readonly >님 환영합니다.
+            <p></p>
+          <button type="submit" onClick='menu_click("main");' >메인 페이지</button>
+          <button type="button" onClick="Apply_maker_notice();" >업체 공고</button>
+          <button type="button" onClick="Apply_student_notice();" >배달원 공고</button>
+          <button type="submit" onClick='menu_click("allocation");' >배달원 배정</button>
+          <button type="submit" onClick='menu_click("certValid");' >배달 인증 확인</button>
+          <button type="submit" onClick='menu_click("contractMaker");' >업체 계약 관리</button>
+          <button type="submit" onClick='menu_click("childManage");' >결식 아동 관리</button>
+          <button type="submit" onClick='menu_click("childArrangement");' >결식 아동 급식일 배정</button>
+          <button type="submit" onClick='menu_click("makerlist");' >업체 목록</button>
+          <button type="submit" onClick='menu_click("studentlist");' >배달원 목록</button>
+          <button type="submit" onClick='menu_click("mypage");' >마이페이지</button>
+          <button type="submit" onClick='menu_click("logout");' >로그아웃</button>
+      </form>
+  </div>
+</div>
+
+
+
+	<div>
+		<h2 align="center">배달원 인증 확인</h2>
+        <br />
+        <br />
+		<h3 align="center">배달 인증 내역</h3>
+		<table align="center" class="table table-dark">
+			  <tr>
+                <th class="tg-0lax">배달원</th>
+                <th class="tg-0lax">배달 날짜</th>
+				<th class="tg-0lax">배달지</th>
+                <th class="tg-0lax">개수</th>
+                <th class="tg-0lax">상태</th>
+			  </tr>
+			  <tr>
+                <td class="tg-0lax"><input type="text" value="<%=name %>" name="sname" form="frm2" style="width: 80px; text-align: center; color: black; font-size: 13px;" readonly ></td>
+				<td class="tg-0lax"><input type="text" value="<%=origin %>" name="date" form="frm2" style="width: 80px; text-align: center; color: black; font-size: 13px;" readonly ></td>
+                <td class="tg-0lax"><input type="text" value="<%=address %>" name="address" form="frm2" style="width: 280px; text-align: center; color: black; font-size: 13px;" readonly ></td>
+				<td class="tg-0lax"><input type="text" value="<%=count %>" name="count" form="frm2" style="width: 30px; text-align: center; color: black; font-size: 13px;" readonly ></td>
+                <td class="tg-0lax"><%=state %></td>
+			  </tr>
+        </table>
+            <br />
+        
+        <% if(data) { %>
+        <div align="center">
+        <table>
+            <tr>
+                <th class="maker_apply2">인증사진</th>
+                <th class="maker_apply2" style="width: 40%;">배달 상태</th>
+                <th class="maker_apply2">급식 수령 아동</th>
+                <th class="maker_apply2">배달 위치</th>
+            </tr>
+            <form method="post" id="frm2" name="frm2" >
+            <tr>
+                <td class="maker_apply2"><a href="<%=data[0].link %>" target="_blank" style="color: white;">인증 링크</a></td>
+                <td class="maker_apply2">
+                    <% if(state == '배정 전') { %>
+                    <input type="radio" id="r1" name="state" value="배정 전" checked>
+		            <label for="배정 전">배정 전</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r1" name="state" value="배정 전">
+		            <label for="배정 전">배정 전</label><br>
+                    <% } %>
+                    <% if(state == '배달 전') { %>
+                    <input type="radio" id="r2" name="state" value="배달 전" checked>
+		            <label for="배달 전">배달 전</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r2" name="state" value="배달 전">
+		            <label for="배달 전">배달 전</label><br>
+                    <% } %>
+                    <% if(state == '배달 완료') { %>
+		            <input type="radio" id="r3" name="state" value="배달 완료" checked>
+		            <label for="배달 완료">배달 완료</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r3" name="state" value="배달 완료">
+		            <label for="배달 완료">배달 완료</label><br>
+                    <% } %>
+                    <% if(state == '봉사 완료') { %>
+		            <input type="radio" id="r4" name="state" value="봉사 완료" checked>
+		            <label for="봉사 완료">봉사 완료</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r4" name="state" value="봉사 완료">
+		            <label for="봉사 완료">봉사 완료</label><br>
+                    <% } %>
+                    <input type="button" class="submit" value="확인" onClick="Complete();">
+                </td>
+                <td class="maker_apply2"><input type="text" value="<%=data[0].name %>" name="name" style="width: 60px; text-align: center; color: black;" readonly></td>
+                <td class="maker_apply2"><input type="button" value="지도" class="submit" onClick="Valid_location();"></td>
+            </tr>
+            </form>
+        </table>
+        </div>
+        <% } else { %>
+        <div align="center">
+        <table>
+            <tr>
+                <th class="maker_apply2">인증사진</th>
+                <th class="maker_apply2" style="width: 40%;">배달 상태</th>
+                <th class="maker_apply2">급식 수령 아동</th>
+                <th class="maker_apply2">배달 위치</th>
+            </tr>
+            <form method="post" id="frm2" name="frm2" >
+            <tr>
+                <td class="maker_apply2"><h5>인증된 사진 링크가 존재하지 않습니다.</h5></td>
+                <td class="maker_apply2">
+                    <% if(state == '배정 전') { %>
+                    <input type="radio" id="r1" name="state" value="배정 전" checked>
+		            <label for="배정 전">배정 전</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r1" name="state" value="배정 전">
+		            <label for="배정 전">배정 전</label><br>
+                    <% } %>
+                    <% if(state == '배달 전') { %>
+                    <input type="radio" id="r2" name="state" value="배달 전" checked>
+		            <label for="배달 전">배달 전</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r2" name="state" value="배달 전">
+		            <label for="배달 전">배달 전</label><br>
+                    <% } %>
+                    <% if(state == '배달 완료') { %>
+		            <input type="radio" id="r3" name="state" value="배달 완료" checked>
+		            <label for="배달 완료">배달 완료</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r3" name="state" value="배달 완료">
+		            <label for="배달 완료">배달 완료</label><br>
+                    <% } %>
+                    <% if(state == '봉사 완료') { %>
+		            <input type="radio" id="r4" name="state" value="봉사 완료" checked>
+		            <label for="봉사 완료">봉사 완료</label><br>
+                    <% } else { %>
+                    <input type="radio" id="r4" name="state" value="봉사 완료">
+		            <label for="봉사 완료">봉사 완료</label><br>
+                    <% } %>
+                    <input type="submit" value="확인" onClick="Complete();">
+                </td>
+                <td class="maker_apply2"><input type="text" value="<%=data[0].name %>" name="name" style="width: 100px; text-align: center;" readonly></td>
+                <td class="maker_apply2"><input type="button" value="지도" onClick="Valid_location();"></td>
+            </tr>
+            </form>
+        </table>
+        </div>
+        
+        <% } %>
+        <br />
+        <br />
+	</div>
+</div>
+
+
+
+<!-- yunny add -->
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>

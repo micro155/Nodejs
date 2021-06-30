@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:white;
+
+}
+
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 4px;
+  
+}
+     
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  font-size: 15px;
+  display: block;
+}
+
+.topnav button {
+	width:100%;
+	cursor: pointer;
+	color: white;
+	padding: 14px 16px;
+	
+	font-size: 17px;
+	display: block;
+	background-color:#333;
+	border-width: 0px;
+}
+
+#myLinks{
+
+}
+
+.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  
+}
+
+.topnav button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  
+  background-color:#1ab188;
+  color: white;
+}
+
+   select{
+  border:0;
+  text-align:center;
+  width:auto;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  font-size:15px;
+} 
+
+<!-- yunny add -->
+
+h4{
+text-align:center;
+color:#fff;
+}
+
+h3{
+text-align:center;
+color:white;
+}
+
+.apply-submit{
+border:0;
+  text-align:center;
+  width:auto;
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:12px;
+}
+
+< !-- yunny add -->
+    </style>
+</head>
+
+<body>
+    
+    <script>
+        function menu_click(str) {
+            if(str == "main") {
+                frm.action = "/process/Student_Main";
+            } else if(str == "FindDelivery") {
+                frm.action = "/process/Student_FirstPageDelivery";
+            } else if(str == "CertPage") {
+                frm.action = "/process/Student_CertPage";
+            } else if(str == "mypage") {
+                frm.action = "/process/Student_mypage";
+            } else if(str == "logout") {
+                frm.action = "/process/logout";
+                alert('정상적으로 로그아웃 되었습니다.');
+            }
+        }
+    </script>
+	
+<div class="form">
+    
+	<div class="topnav">
+		<a class="active">밥딜리버리</a><a href="javascript:void(0);" class="icon" onclick="myFunction()">
+			<i class="fa fa-bars"></i>
+		</a>
+	  
+		<div id="myLinks" class="multi-button">
+			<form method="post" style="color:white;" name="frm" id="frm">
+          <input type="text" value="<%=StudentID %>" name="id" style="font-weight: bold; width: 80px; text-align: center; color: #fff; background: #333; border-width: 0px; " readonly> 님 환영합니다
+			<p></p>
+				  <button type="submit" onclick='menu_click("main");' >메인 페이지</button>
+				  <button type="submit" onclick='menu_click("FindDelivery");' >배달지 확인</button>
+				  <button type="submit" onclick='menu_click("CertPage");' >배달 인증</button>
+				  <button type="submit" onclick='menu_click("mypage");' >마이페이지</button>
+				  <button type="submit" onclick='menu_click("logout");' >로그아웃</button>
+			</form>
+		</div>
+	  
+		
+	</div>
+
+        
+        <h3>배달지 확인</h3>
+        <br />
+        <div class="maker_apply_list" align="center">
+            <h4>배달 날짜</h4>
+            <form method="post" action="/process/Student_FindDelivery" id="frm2" name="frm2">
+                <% if(data) { %>
+            <select name="date">
+                <option value="">날짜선택</option>
+                <% for (var i=0; i<data.length; i++) { %>
+                <option value="<%=data[i].date %>" name="date"><%=data[i].date %></option>
+                <% } %>
+            </select>
+                <input type="submit" class="apply-submit" value="검색" />
+                </form>
+                <br />
+                <% } else { %>
+                <h4 align="center">배달 날짜가 존재하지 않습니다.</h4>
+                <% } %>
+        </div>
+</div>
+    
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myLinks");
+                if (x.style.display === "block") {
+                    x.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                }
+            }
+        </script>
+</body>
+</html>

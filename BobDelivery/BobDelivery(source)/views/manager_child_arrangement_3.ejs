@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {font-family: Arial;}
+
+.cover {
+
+  text-align: center;
+  float: center;
+  
+  border: 1px solid black;
+}
+
+    div#position {
+        position: relative;
+        margin: 0 auto;
+        border: 1px solid black;
+        width: 600px;
+        height: 400px;
+        
+    }
+    
+
+</style>
+
+    <script>
+        
+        function ArrangeComplete() {
+            alert('급식 일자 배정이 완료되었습니다.');
+            setTimeout(function() {
+             window.open("about:blank", "_self").close();
+            }, 500);
+        }
+    
+    </script>
+    
+    
+</head>
+<body>
+<h3 style="text-align:center;">결식 아동 급식 배정</h3>
+       <br />
+       <h5 align="center">대상 아동 아이디 : <input type="text" value="<%=child %>" name="id" form="frm" style="width: 100px; text-align: center;"></h5>
+       <h5 align="center">대상 아동 거주지 : <input type="text" value="<%=child_address %>" name="address" form="frm" style="width: 350px; text-align: center;"></h5>
+	   <table class="table table-striped">
+           <tr>
+               <td>급식 날짜</td>
+               <td>업체명</td>
+               <td>업체 주소</td>
+               <td>식단 종류</td>
+               <td>급식일 배정</td>
+           </tr>
+           <% if(data) { %>
+           <% for (var i=0; i<data.length; i++) { %>
+           <form method="post" id="frm" name="frm" action="/process/Manager_ChildArrangement" >
+           <tr>
+               <td><input type="text" value="<%=data[i].date %>" name="date" readonly></td>
+               <td><%=data[i].name %></td>
+               <td><%=data[i].address1 %> <%=data[i].address2 %></td>
+               <td><%=data[i].type %></td>
+               <td><input type="submit" value="배정" onClick="ArrangeComplete();"></td>
+           </tr>
+           </form>
+           <% } %>
+           <% } else { %>
+           <tr>
+               <td></td>
+               <td></td>
+               <td><h4 align="center">급식 가능한 날짜가 존재하지 않습니다.</h4></td>
+           </tr>
+           <% } %>
+       </table>
+    <br />
+    <br />
+    <div align="center">
+        <input type="button" class="btn btn-primary" value="이전으로" onClick="history.back();">
+    </div>
+    
+
+	
+</body>
+</html> 

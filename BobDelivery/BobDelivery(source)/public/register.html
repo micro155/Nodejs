@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+font-family: Arial;
+}
+
+/* Style the tab */
+.tab {
+overflow: hidden;
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: #fff;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width:33.3%;
+}
+
+/* Create an active/current tablink class */
+.tab button:hover {
+  background-color: #1ab18899;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #1ab188db;
+}
+
+.form {
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+input[type=submit] {
+  border:0;
+  text-align:center;
+  width:30%;
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:20px;
+}
+
+input[type=button] {
+  border:0;
+  text-align:center;
+  width:30%;  
+  background: #1ab188;
+  color: #ffffff;
+  cursor: pointer;
+  font-size:20px;
+  
+}
+
+
+h4 {
+  text-align: left;
+  color: #ffffff;
+  margin: 0 0 5px;
+}
+</style>
+
+</head>
+        
+<body>
+    <script>
+     function check_student() {
+         window.open("","아이디 검사","width=400, height=400");
+         var frm = document.frm;
+         frm.action = "/process/CheckStudent";
+         frm.target = "아이디 검사"
+         frm.submit();
+     }
+        
+     function check_maker() {
+         window.open("","아이디 검사","width=400, height=400");
+         var frm2 = document.frm2;
+         frm2.action = "/process/CheckMaker";
+         frm2.target = "아이디 검사"
+         frm2.submit();
+     }
+        
+     function check_manager() {
+         window.open("","아이디 검사","width=400, height=400");
+         var frm3 = document.frm3;
+         frm3.action = "/process/CheckManager";
+         frm3.target = "아이디 검사"
+         frm3.submit();
+     }
+    
+        
+     function student_submit() {
+         var frm = document.frm;
+         frm.action = "/process/addStudent";
+         frm.submit();
+     }
+       
+     function maker_submit() {
+         var frm2 = document.frm2;
+         frm2.action = "/process/addMaker";
+         frm2.submit();
+     }
+     
+     function manager_submit() {
+         var frm3 = document.frm3;
+         frm3.action = "/process/addManager";
+         frm3.submit();
+     }
+        
+    </script>
+<script type="text/javascript" src="../js/register.js"></script>
+<div class="form">
+	<h1 style="color: #ffffff;">회원가입</h1>
+
+	<div  class="tab">
+			<button class="tablinks" id="student-tab" onclick="SelectJob(event, 'student')">학생</button>
+			<button class="tablinks" id="maker-tab" onclick="SelectJob(event, 'maker')">업체</button>
+			<button class="tablinks" id="manager-tab" onclick="SelectJob(event, 'manager')">지자체</button>
+	</div>	
+		
+	<br />
+	<br />
+		
+	<form method="POST" class="student-tab" id="frm" name="frm">
+		<!-- <div> -->
+			<h4 for="id">아이디</h4>
+			<input type="text" placeholder="중복검사를 눌러주세요." name="id" id="maker_id" style="text-align: center;" required/>
+            <input type="button" value="중복 검사" onclick="check_student();" style="height: 25px; width: 80px; font-size: 15px;"/>
+			<p></p>
+			<h4 for="pw">비밀번호</h4>
+			<input type="password" placeholder="Enter 비밀번호" name="password" id="student_pw" style="text-align: center;" required/>
+			<p></p>
+			<h4 for="id">이름</h4>
+			<input type="text" placeholder="Enter name" name="name" id="student_name" style="text-align: center;" required/>
+			<p></p>
+			<h4 for="id">연락처</h4>
+			<input type="text" placeholder="Enter tel" name="phone" id="student_tel" style="text-align: center;" required/>
+			<p></p>
+			<h4>주소  <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 100px; text-align: center;"/> <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" style="height: 25px; width: 80px; font-size: 15px;"/></h4>
+			<input type="text" id="sample6_address" placeholder="주소" name="address1" style="width: 200px; text-align: center;" required/>
+            <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" style="width: 150px; text-align: center;" required/>
+			<input type="text" id="sample6_extraAddress" placeholder="참고항목" style="width: 100px; text-align: center;" />
+
+
+			<br />
+			<p></p>
+			<p></p>
+			<div style="text-align:center;">
+			<input type="submit"  onclick="student_submit();" value="회원가입">
+			<input type="button"  onclick="location.href='../'" value="돌아가기">
+			</div>
+	</form>
+		
+		
+	<form method="POST" class="maker-tab" id="frm2" name="frm2" style="display:none;">
+			<h4 for="id">아이디</h4>
+			<input type="text" placeholder="중복검사를 눌러주세요." name="id" id="maker_id" style="text-align: center;" required>
+            <input type="button" value="중복 검사" onclick="check_maker();" style="height: 25px; width: 80px; font-size: 15px;"/>
+			<p></p>
+			<h4 for="pw">비밀번호</h4>
+			<input type="password" placeholder="Enter 비밀번호" name="password" id="maker_pw" style="text-align: center;" required/>
+			<p></p>
+			<h4 for="id">업체명</h4>
+			<input type="text" placeholder="Enter name" name="name" id="maker_name" style="text-align: center;" required/>
+			<p></p>
+			<h4 for="id">업체 연락처</h4>
+			<input type="text" placeholder="Enter tel" name="phone" id="maker_phone" style="text-align: center;" required/>
+			<p></p>
+			<h4>주소  <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 100px; text-align: center;"/> <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" style="height: 25px; width: 80px; font-size: 15px;"/></h4>
+			<input type="text" id="sample6_address" placeholder="주소" name="address1" style="width: 200px; text-align: center;" required/>
+            <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" style="width: 150px; text-align: center;" required/>
+			<input type="text" id="sample6_extraAddress" placeholder="참고항목" style="width: 100px; text-align: center;" />
+			<p></p>
+			<h4 for="id">은행명</h4>
+			<input type="text" placeholder="은행명 입력" name="bank" id="bank" style="text-align: center;" required />
+			<p></p>
+			<h4 for="id">사업자번호</h4>
+			<input type="text" placeholder="사업자번호 입력" name="buisness_reg_num" id="buisness_reg_num" style="text-align: center;" required/>
+			<p></p>
+			<h4 for="id">계좌번호</h4>
+			<input type="text" placeholder="계좌번호 입력" name="account_num" id="account_num" style="text-align: center;" required/>
+			<br />
+			<br />
+			<div style="text-align:center;">
+			<input type="submit"  onclick="maker_submit();" value="회원가입">
+			<input type="button"  onclick="location.href='../'" value="돌아가기">
+			</div>
+	</form>
+
+
+	<form method="POST" class="manager-tab" id="frm3" name="frm3" style="display:none;">
+			<h4 for="id">아이디</h4>
+			<input type="text" placeholder="중복검사를 눌러주세요." name="id" id="manager_id" style="text-align: center;" required>
+            <input type="button" value="중복 검사" onclick="check_manager();" style="height: 25px; width: 80px; font-size: 15px;">
+			<p></p>
+			<h4 for="pw">비밀번호</h4>
+			<input type="password" placeholder="Enter 비밀번호" name="password" id="manager_pw" style="text-align: center;" required>
+			<p></p>
+			<h4 for="id">지자체명</h4>
+			<input type="text" placeholder="지자체명 입력" name="manager_name" id="manager_name" style="text-align: center;" required>
+			<p></p>
+			<h4 for="id">담당자 이름</h4>
+			<input type="text" placeholder="담당자 이름 입력" name="manage_person_name" id="manage_person_name" style="text-align: center;" required>
+			<p></p>
+			<h4 for="id">담당자 유선 연락처</h4>
+			<input type="text" placeholder="담당자 연락처 입력" name="manage_person_phone" id="manage_person_phone" style="text-align: center;" required>
+			<br />
+			<br />
+			<div style="text-align:center;">
+			<input type="submit"  onclick="manager_submit();" value="회원가입">
+			<input type="button"  onclick="location.href='../'" value="돌아가기">
+			</div>
+	</form>
+
+</div>
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("student-tab").className += " active";
+
+</script>
+    
+
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+            <script>
+            function sample6_execDaumPostcode() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var addr = ''; // 주소 변수
+                        var extraAddr = ''; // 참고항목 변수
+
+                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                            addr = data.roadAddress;
+                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                                    addr = data.jibunAddress;
+                        }
+
+                                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                        if(data.userSelectedType === 'R'){
+                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                extraAddr += data.bname;
+                            }
+                            // 건물명이 있고, 공동주택일 경우 추가한다.
+                            if(data.buildingName !== '' && data.apartment === 'Y'){
+                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                            }
+                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                            if(extraAddr !== ''){
+                                extraAddr = ' (' + extraAddr + ')';
+                            }
+                            // 조합된 참고항목을 해당 필드에 넣는다.
+                            document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                        } else {
+                            document.getElementById("sample6_extraAddress").value = '';
+                        }
+
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        document.getElementById('sample6_postcode').value = data.zonecode;
+                        document.getElementById("sample6_address").value = addr;
+                        // 커서를 상세주소 필드로 이동한다.
+                        document.getElementById("sample6_detailAddress").focus();
+                    }
+                }).open();
+            }
+                    function sample7_execDaumPostcode() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                        var addr = ''; // 주소 변수
+                        var extraAddr = ''; // 참고항목 변수
+
+                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                            addr = data.roadAddress;
+                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                                    addr = data.jibunAddress;
+                        }
+
+                                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                        if(data.userSelectedType === 'R'){
+                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                extraAddr += data.bname;
+                            }
+                            // 건물명이 있고, 공동주택일 경우 추가한다.
+                            if(data.buildingName !== '' && data.apartment === 'Y'){
+                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                            }
+                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                            if(extraAddr !== ''){
+                                extraAddr = ' (' + extraAddr + ')';
+                            }
+                            // 조합된 참고항목을 해당 필드에 넣는다.
+                            document.getElementById("sample7_extraAddress").value = extraAddr;
+                
+                        } else {
+                            document.getElementById("sample7_extraAddress").value = '';
+                        }
+
+                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                        document.getElementById('sample7_postcode').value = data.zonecode;
+                        document.getElementById("sample7_address").value = addr;
+                        // 커서를 상세주소 필드로 이동한다.
+                        document.getElementById("sample7_detailAddress").focus();
+                    }
+                }).open();
+            }
+            </script>
+</body>
+</html> 

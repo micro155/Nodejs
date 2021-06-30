@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {font-family: Arial;}
+
+.cover {
+
+  text-align: center;
+  float:center;
+  
+  border: 1px solid black;
+  <!-- background-color: #f1f1f1; -->
+}
+
+    div#position {
+        position: relative;
+        margin: 0 auto;
+        border: 1px solid black;
+        width: 600px;
+        height: 400px;
+        
+    }
+    
+    
+#calendar {
+            height: 50%;
+            width: 80%;
+            box-sizing: border-box;
+            align-content: center;
+            padding: 0.5%;
+        }
+        
+        .not_this_month {
+            background-color: white;
+            display: inline-block;
+            vertical-align: bottom;
+            width: calc(95% / 7);
+            height: calc(98% / 5);
+            box-sizing: border-box;
+        }
+        
+        .weekday {
+            display: inline-block;
+            vertical-align: bottom;
+            width: calc(95% / 7);
+            height: calc(98% / 5);
+            box-sizing: border-box;          
+            padding: 10px;
+            border: 1px black solid;
+        }
+        
+        .weekend {
+            background-color: white;
+            color: red;
+            display: inline-block;
+            vertical-align: bottom;
+            width: calc(95% / 7);
+            height: calc(98% / 5);
+            box-sizing: border-box;                      
+            padding: 10px;
+            border: 1px black solid;
+        }
+        
+        .selected {
+            background-color: gray;
+            color: white;
+        }
+
+        .horizontalGutter {
+            margin-right: 0.5%;
+        }
+
+        .verticalGutter {
+            margin-top: 0.5%;
+        }
+</style>
+
+    
+</head>
+<body>
+<h3 style="text-align:center;">지난 업체 공고 신청 내역</h3>
+
+	   <table class="table table-striped">
+           <tr>
+               <th>공고명</th>
+               <th>시작일</th>
+               <th>마감일</th>
+               <th>신청인</th>
+               <th>조회</th>
+           </tr>
+           <% if(data) { %>
+           <% for (var i=0; i<data.length; i++) { %>
+           <form method="post" name="frm" id="frm" action="/process/Maker_PastApplyDetail">
+           <tr>
+               <td><input type="text" value="<%=data[i].title %>" name="title" style="width: 300px; text-align: center;" ></td>
+               <td><%=data[i].start %></td>
+               <td><%=data[i].end %></td>
+               <td><input type="text" value="<%=MakerID %>" name="id" style="width: 100px; text-align: center;" ></td>
+               <td><input type="submit" value="조회" ></td>
+           </tr>
+           </form>
+           <% } %>
+           <% } else { %>
+           <tr>
+               <td></td>
+               <td></td>
+               <td><h5 align="center">지난 납품 결과가 없습니다.</h5></td>
+               <td></td>
+               <td></td>
+           </tr>
+           <% } %>
+       </table>
+    <br />
+    <br />
+    <div align="center">
+        <input type="button" class="btn btn-primary" value="창닫기" onClick="window.close();">
+    </div>
+    
+
+	
+</body>
+</html> 

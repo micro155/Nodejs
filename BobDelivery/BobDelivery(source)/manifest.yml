@@ -1,0 +1,6 @@
+---
+applications:
+- name: BobDelivery
+  memory: 1024M
+  instances: 1
+  path: .
